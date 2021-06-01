@@ -9,7 +9,10 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 // const route = require('./route');
 
+
+
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 
@@ -25,6 +28,8 @@ app.on('ready', () => {
         }
     });
 });
+
+
 
 const server = http.createServer(app);
 app.listen(8080);
