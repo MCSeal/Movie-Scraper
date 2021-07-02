@@ -204,13 +204,18 @@ generateFavourites = (favourite) => {
  
  
 document.querySelector('#share').addEventListener('click', (e) =>{
+    console.log('okay');
+    console.log(favourites);
+  
+   let body = JSON.stringify({favourites});
+   
+   http.open("POST", )
+   fetch("/",
+   {method:"post", 
+    body:body,
+    headers: {
+      'Content-Type': 'application/json'
+    }});
 
-
-    // const favourite = new Favourite({
-    //   favs: favourites,
-    //   id: 
-    // });
-    // console.log('baby')
-    // console.log(favourites)
 });
 

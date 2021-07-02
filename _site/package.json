@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-complete-guide",
+  "name": "Movie-app",
   "version": "1.0.0",
-  "description": "Complete Node.js Guide",
+  "description": "Movie App",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,8 +19,8 @@
     "express": "^4.16.3",
     "express-handlebars": "3.0",
     "jsdom": "^16.5.3",
-    "mongodb": "^3.6.6",
-    "mongoose": "^5.12.5",
+    "mongodb": "^3.6.9",
+    "mongoose": "^5.12.12",
     "mysql2": "^2.2.5",
     "pug": "^3.0.2",
     "sequelize": "^6.6.2",
