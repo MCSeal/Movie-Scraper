@@ -7,16 +7,17 @@ var jsdom = require("jsdom");
 var JSDOM = jsdom.JSDOM;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-// const route = require('./route');
 
 
+const server = http.createServer(app);
+app.listen(8080);
 
+app.use(express.json({limit: '2mb'}));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(bodyParser.urlencoded({extended: true}));
 
-
-
-app.use('/', (req, res, next) => {
+app.get('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'index.html'))
 })
 
@@ -31,10 +32,7 @@ app.on('ready', () => {
 
 
 
-const server = http.createServer(app);
-app.listen(8080);
-
-
-
-const Http = new XMLHttpRequest();
-
+app.post('/', (req, res) => {
+    console.log(req.body);
+    res.redirect('/');
+});

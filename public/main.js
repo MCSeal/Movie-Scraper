@@ -120,7 +120,7 @@ generateResults = (results) =>{
          
      }
    }
-    console.log(favourites)
+    
  }
  
  
@@ -204,18 +204,17 @@ generateFavourites = (favourite) => {
  
  
 document.querySelector('#share').addEventListener('click', (e) =>{
-    console.log('okay');
-    console.log(favourites);
-  
-   let body = JSON.stringify({favourites});
+  console.log(favourites)
    
-   http.open("POST", )
-   fetch("/",
-   {method:"post", 
-    body:body,
+  fetch('/',{
+    method:'POST', 
     headers: {
       'Content-Type': 'application/json'
-    }});
+    },
+    body: JSON.stringify({favourites})
+
+  });
+
 
 });
 
