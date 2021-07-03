@@ -204,7 +204,7 @@ generateFavourites = (favourite) => {
  
  
 document.querySelector('#share').addEventListener('click', (e) =>{
-  console.log(favourites)
+ 
    
   fetch('/',{
     method:'POST', 

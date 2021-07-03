@@ -6,10 +6,7 @@ const favSchema = new Schema({
        type: Array,
        required: true
    },
-   id: {
-       type: Number,
-       required: true
-   }
+   shareCode: String
    
 });
 
