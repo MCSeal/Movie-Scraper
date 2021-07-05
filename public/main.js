@@ -16,7 +16,7 @@ var favCounter = 0;
 var resultsData = [];
 var favourites = [];
 
-
+// let favourites= getSavedFavs()
 
 document.querySelector('#search_box').addEventListener('keypress', (e) =>{
 

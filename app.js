@@ -11,7 +11,7 @@ const MONGODB_CREDS = keys.MONGODB
 const favDataModel = require('./model/fav')
 const server = http.createServer(app);
 const router = express.Router();
-
+const Favourite = require('./model/fav')
 
 mongoose.connect(MONGODB_CREDS)
 .then(result => {
@@ -26,11 +26,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-
+app.set('view engine', 'ejs');
 
 
 app.get('/', (req, res, next) => {
-  res.sendFile(path.join(__dirname, 'index.html'))
+    res.render('index', {
+        pageTitle: 'Movie Favourites',
+        path: '/'
+    
+    })
 })
 
 app.on('ready', () => {
@@ -76,3 +80,30 @@ app.post('/', (req, res) => {
 });
 
 // router.get('/:shareToken')
+
+app.get('/:shareToken', (req, res, next) => {
+   const shareToken = req.params.shareToken
+   if (shareToken !== null){
+    Favourite.findOne({shareCode: shareToken})
+    .then(result => {
+        console.log(result.favs)
+    })
+    .catch(err => {
+        console.log(err);
+    })
+    // res.sendFile(path.join(__dirname, 'index.html'))
+   } else{
+       next
+   }
+
+})
+
+
+
+
+
+  //read existing notes for LS
+// getSavedNotes = () => {
+//     const notesJSON = localStorage.getItem('notes')
+//     return notesJSON !== null ? JSON.parse(notesJSON) : []
+// }
