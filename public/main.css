@@ -59,6 +59,11 @@ html {
   
   }
   
+  .share-box{
+    display: inline-block;
+  }
+
+
     #search_box{
       display: block;
       max-width: 100rem;
@@ -96,7 +101,7 @@ html {
     margin-right: 3rem;
     height: 140rem;
     width: 60rem;
-    
+    overflow: scroll;
       
       
     background-color: #f6f5f3; 

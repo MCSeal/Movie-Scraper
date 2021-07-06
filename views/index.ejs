@@ -22,7 +22,7 @@
 
     <main>
         <h1 class="header" id="title"> Favourite Movies</h1>
-        
+        <input type="hidden" name="favArray" value="<%= favourites %>">
         <div class= "container">
            <div class="search">
                <input id="search_box" type="text" class="input" placeholder="Search">
@@ -31,10 +31,15 @@
                     <div id= "bottom__title">
             <div id= "bottom__title-res"><h3>Results</h3></div>
             <div id= "bottom__title-fav"><h3>Favourites</h3>
-            
+                <div class="share-box">
                 <form class="login-form" action="/" method="POST" novalidate>
                     <button class="btn" id="share" type="submit">Share</button>
-                </form>    
+                </form>
+                
+                <input type="text" value="<%= shareBoxValue %>" id="shareBox">
+                <button onclick="copyText()">Copy to clipboard</button>
+                </input>  
+                </div>
             </div>
             </div>
         <div class="bottom_container">

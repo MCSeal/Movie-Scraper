@@ -32,7 +32,9 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res, next) => {
     res.render('index', {
         pageTitle: 'Movie Favourites',
-        path: '/'
+        path: '/',
+        favourites: [],
+        shareBoxValue: "Click share!"
     
     })
 })
@@ -50,10 +52,14 @@ app.on('ready', () => {
 
 app.post('/', (req, res) => {
    jsonFavs = req.body
-   
-   
-    if (jsonFavs.favourites != undefined){
-        console.log('OK')
+
+    console.log(jsonFavs)
+    console.log(jsonFavs.length())
+   function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+    }
+
+    if (!isEmpty(jsonFavs)){
     crypto.randomBytes(6, (err, buffer)=>{
         const token = buffer.toString('hex')
         
@@ -64,10 +70,9 @@ app.post('/', (req, res) => {
         }) 
     
         return favArray.save()
-
-        // .then(result => {
-
-        // })
+        .then(result => {
+            res.status(201).json({ path: `/share/${token}` })
+        })
     
         .catch(err => {
             console.log(err);
@@ -79,31 +84,32 @@ app.post('/', (req, res) => {
 
 });
 
-// router.get('/:shareToken')
 
-app.get('/:shareToken', (req, res, next) => {
+
+app.get('/share/:shareToken', (req, res, next) => {
    const shareToken = req.params.shareToken
+    
+
    if (shareToken !== null){
     Favourite.findOne({shareCode: shareToken})
     .then(result => {
-        console.log(result.favs)
+        res.render('index', {
+            pageTitle: 'Movie Favourites',
+            path: '/share/:shareToken',
+            favourites: result.favs[0].favourites,
+            shareBoxValue: 'share/' + shareToken
+        
+        })
     })
     .catch(err => {
         console.log(err);
     })
-    // res.sendFile(path.join(__dirname, 'index.html'))
+
    } else{
-       next
+       next()
    }
 
 })
 
 
 
-
-
-  //read existing notes for LS
-// getSavedNotes = () => {
-//     const notesJSON = localStorage.getItem('notes')
-//     return notesJSON !== null ? JSON.parse(notesJSON) : []
-// }
