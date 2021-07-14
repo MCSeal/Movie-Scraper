@@ -107,7 +107,7 @@ app.get('/share/:shareToken', (req, res, next) => {
             pageTitle: 'Movie Favourites',
             path: '/share/:shareToken',
             favourites: result.favs[0].favourites,
-            shareBoxValue: 'share/' + shareToken
+            shareBoxValue: 'https://movie-scraper-ms.herokuapp.com/share/' + shareToken
         
         })
     })
