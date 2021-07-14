@@ -7,15 +7,15 @@ const crypto = require('crypto')
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const keys = require('./private/keys')
-const MONGODB_CREDS = keys.MONGODB
+
 const favDataModel = require('./model/fav')
 const server = http.createServer(app);
 const router = express.Router();
 const Favourite = require('./model/fav')
 
-mongoose.connect(MONGODB_CREDS)
+mongoose.connect(`${process.env.MONGO}`)
 .then(result => {
-    app.listen(8080);
+    app.listen(process.env.PORT ||8080);
 })
 .catch(err => {
     console.log(err);
@@ -39,6 +39,17 @@ app.get('/', (req, res, next) => {
     })
 })
 
+//to fix!:
+
+//2 reqs!  why
+
+
+
+
+
+
+
+
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
         webPreferences: {
@@ -53,13 +64,11 @@ app.on('ready', () => {
 app.post('/', (req, res) => {
    jsonFavs = req.body
 
-    console.log(jsonFavs)
-    console.log(jsonFavs.length())
    function isEmpty(obj) {
     return Object.keys(obj).length === 0;
     }
-
-    if (!isEmpty(jsonFavs)){
+    //trying to get empty arrays put into db
+    if (!isEmpty(jsonFavs) && jsonFavs.favourites){
     crypto.randomBytes(6, (err, buffer)=>{
         const token = buffer.toString('hex')
         
@@ -89,6 +98,7 @@ app.post('/', (req, res) => {
 app.get('/share/:shareToken', (req, res, next) => {
    const shareToken = req.params.shareToken
     
+   
 
    if (shareToken !== null){
     Favourite.findOne({shareCode: shareToken})
