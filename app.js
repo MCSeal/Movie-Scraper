@@ -6,12 +6,12 @@ const crypto = require('crypto')
 
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const keys = require('../private/keys')
 
-const favDataModel = require('../model/fav')
+
+const favDataModel = require('./model/fav')
 const server = http.createServer(app);
 const router = express.Router();
-const Favourite = require('../model/fav')
+const Favourite = require('./model/fav')
 
 mongoose.connect(`${process.env.MONGO}`)
 .then(result => {
