@@ -1,6 +1,0 @@
-{
-    "env":{
-        "MONGO": "mongodb+srv://Sealyoulater:Okayiguess!123@cluster0.lctpx.mongodb.net/movies"
-    }
-
-}
