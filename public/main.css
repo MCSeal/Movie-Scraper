@@ -93,7 +93,7 @@ a {
   margin-right: 3rem;
   height: 140rem;
   width: 60rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   border-radius: 2.25rem;
 
   background-color: #f6f5f3;
@@ -181,7 +181,6 @@ h1 {
   .header {
     padding: 2rem;
     text-align: center;
-    background-color: #65c2b8;
     margin-bottom: 0rem;
   }
 
@@ -210,7 +209,7 @@ h1 {
     margin-right: 2rem;
     height: 140rem;
     width: 60rem;
-    overflow-y: scroll;
+    overflow-y: auto;
     border-radius: 2.25rem;
     background-color: #f6f5f3;
   }
